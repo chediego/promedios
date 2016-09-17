@@ -13,6 +13,7 @@ var contador_notas = 1;
 */
 var addElement = function () {
   contador_notas++;
+  //agega nota
   var ni = document.getElementById('notasdiv');
 
   var newdiv = document.createElement('input');
@@ -37,6 +38,9 @@ var addElement = function () {
   var ni2 = document.getElementById(contador_notas);
   ni2.appendChild(newspan);
   ni2.appendChild(newdiv);
+  //agrega porcentaje
+
+
 
 }
 
