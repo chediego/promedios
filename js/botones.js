@@ -38,7 +38,34 @@ var addElement = function () {
   var ni2 = document.getElementById(contador_notas);
   ni2.appendChild(newspan);
   ni2.appendChild(newdiv);
+
   //agrega porcentaje
+
+  var divpor = document.getElementById('porcentajesdiv');
+
+  var newdivprc = document.createElement('input');
+  var newspanprc = document.createElement('span');
+  var newpprc = document.createElement('p');
+
+  var newnameprc = 'porcentajes' + contador_notas;
+
+  newspanprc.setAttribute('class','input-group-addon');
+  newspanprc.setAttribute('id',newnameprc);
+  newspanprc.innerHTML = 'porcentaje '+ contador_notas;
+
+  var divIdNameprc = 'porcentaje'+contador_notas;
+
+  newdivprc.setAttribute('id',divIdNameprc);
+  newdivprc.setAttribute('type','text');
+  newdivprc.setAttribute('class','form-control');
+  var auxiname = 'p' + contador_notas;
+  newpprc.setAttribute('id',auxiname);
+  divpor.appendChild(newpprc);
+
+  var auxi = document.getElementById(auxiname);
+  auxi.appendChild(newspanprc);
+  auxi.appendChild(newdivprc);
+
 
 
 
@@ -52,8 +79,14 @@ var removeElement = function () {
   }
   else {
     var aux = 'nota' + contador_notas;
+    var aux2 = 'p' + contador_notas;
+
+    var elem2 = document.getElementById('porcentajesdiv')
     var elem = document.getElementById('notasdiv');
+
+    var oldp2 = document.getElementById(aux2);
     var oldp = document.getElementById(contador_notas);
+    elem2.removeChild(oldp2)
     elem.removeChild(oldp);
     contador_notas--;
   }
@@ -64,37 +97,102 @@ var get_nota = function(pos){
   return Number(document.getElementById(aux).value);
 }
 
+var get_porcentaje = function(pos) {
+  var aux = 'porcentaje' + pos;
+  return Number(document.getElementById(aux).value);
+}
+
 var promedio = function () {
   var sumatoria = 0;
+  var sumatoriaprc = 0;
+  var arreglo = [];
+  var pos =0;
+  var check;
+  //veo si el porcentaje tiene 100% o no
   for (var i = 1; i <= contador_notas ; i++) {
+    //obtengo las posiciones donde no hay notas
+    if (get_nota(i) == 0) {
+      arreglo[pos] = i;
+      pos++;
+      check = true;
+    }
     sumatoria += get_nota(i);
+    sumatoriaprc += get_porcentaje(i);
   }
-  var result = sumatoria/contador_notas;
-  return result;
+  console.log(arreglo[0]);
+  // si el porcentaje es 100% calculo el promedio por ponderacion, si el usuario no ingreso porcentajes entonces se hace por defecto(todas las notas)
+  //con igual porcentaje
+  if (sumatoriaprc == 100) {
+    if (check) {
+      console.log('faltan notas');
+      var x = 0;
+      var sumadeporcentajes= 0;//en esta variable se guardaran la suma de porcentajes para la formula
+      //saco promedio sin las notas faltantes
+      var promediosin= 0;
+      for (var l = 1; l <= contador_notas; l++) {
+        promediosin += get_nota(l) * (get_porcentaje(l)/100)
+      }
+      //obtener los porcentajes de las notas faltantes
+      for (var k = 0; k < arreglo.length; k++) {
+        //cambio las posiciones donde no hay notas por los porcentajes de las notas faltantes
+        //arreglo[k] = get_porcentaje(arreglo[k]);//luego quitar si no es nesesaria
+        sumadeporcentajes += (get_porcentaje(arreglo[k])/100);//ver formula , esta es la suma de promedios del divisor
+      }
+      x = (4-promediosin)/sumadeporcentajes;
+      for (var m = 0; m < arreglo.length; m++) {
+        var nombre = 'nota'+arreglo[m];
+        console.log(x);
+        document.getElementById(nombre).value = x;
+      }
+      return 4
+    }
+    else {
+      var promediofinal= 0;
+      for (var j = 1; j <= contador_notas; j++) {
+        promediofinal += get_nota(j)*(get_porcentaje(j)/100 );
+      }
+      return promediofinal;
+    }
+  }
+  else if (sumatoriaprc == 0) {
+    var result = sumatoria/contador_notas;
+    return result;
+  }
+  else if (sumatoriaprc <100 || sumatoriaprc>0) {
+    console.log('test');
+    return -1;
+  }
+
 }
 
 var show_avrg = function () {
     var result = promedio();
-    if (result >= 4) {
-      //aprove
-      var parent = document.getElementById('main');
-      var newnotify = document.createElement('div');
-      newnotify.setAttribute('class','alert alert-success');
-      newnotify.setAttribute('role','alert');
-      var message = 'Pasaste el ramo con ' + result;
-      newnotify.innerHTML = message;
-      parent.appendChild(newnotify);
-
+    if (result == -1) {
+      console.log('mal');
     }
     else {
-      var parent = document.getElementById('main');
-      var newnotify = document.createElement('div');
-      newnotify.setAttribute('class','alert alert-danger');
-      newnotify.setAttribute('role','alert');
-      var message = 'No pasaste :( tu nota fue ' + result;
-      newnotify.innerHTML = message;
+      if (result >= 4) {
+        //aprove
+        var parent = document.getElementById('notificaciones');
+        var newnotify = document.createElement('div');
+        newnotify.setAttribute('class','alert alert-success');
+        newnotify.setAttribute('role','alert');
+        var message = 'Pasaste el ramo con ' + result;
+        newnotify.innerHTML = message;
+        parent.appendChild(newnotify);
 
-      parent.appendChild(newnotify);
+      }
+      else {
+        var parent = document.getElementById('notificaciones');
+        var newnotify = document.createElement('div');
+        newnotify.setAttribute('class','alert alert-danger');
+        newnotify.setAttribute('role','alert');
+        var message = 'No pasaste :( tu nota fue ' + result;
+        newnotify.innerHTML = message;
 
+        parent.appendChild(newnotify);
+
+      }
     }
+
   }
