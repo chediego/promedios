@@ -169,6 +169,13 @@ var show_avrg = function () {
     var result = promedio();
     if (result == -1) {
       console.log('mal');
+      var parent = document.getElementById('notificaciones');
+      var newnotify = document.createElement('div');
+      newnotify.setAttribute('class','alert alert-warning');
+      newnotify.setAttribute('role','alert');
+      var message = 'Revisa las ponderaciones peaso e laji ';
+      newnotify.innerHTML = message;
+      parent.appendChild(newnotify);
     }
     else {
       if (result >= 4) {
