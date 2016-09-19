@@ -9,3 +9,9 @@
   position: sticky;
   font-size: 10px;
 }
+#notasdiv>p>input{
+  width: 150px;
+}
+#porcentajesdiv>p>input{
+  width: 150px;
+}
