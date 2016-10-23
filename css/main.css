@@ -3,11 +3,41 @@
   margin-left: -10%;
   font-size: 10px;
   position:sticky;
+  background-color: #BFBFBF;
+  border-radius: 5px;
+}
+body{
+  background-color: #ECECEC !important;
+}
+h1{
+  color: black !important;
+  text-align: center;
+}
+.col-md-4{
+  background-color: #BFBFBF !important;
+  margin-left: 5%;
+  border-radius: 5px;
+  height: inherit;
+}
+.col-md-3{
+  text-align: center;
+  padding-left: 5%;
+  padding-right: 5%;
+
 }
 #notasdiv{
   float: left;
   position: sticky;
   font-size: 10px;
+  background-color: #BFBFBF;
+  border-radius: 5px;
+  /*background-color: #6C7A89;*/
+}
+hr{
+  align-items: center;
+  background-color: #CF000F;
+  height: 3px;
+  width: 50%;
 }
 #notasdiv>p>input{
   width: 150px;

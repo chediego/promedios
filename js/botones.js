@@ -1,4 +1,5 @@
 var contador_notas = 1;
+var contador_notificaciones = 0 ;
 /*  var agregar = function () {
   contador_notas++;
   var aux = '<p><span class="input-group-addon">nota'+contador_notas+'</span>'+'<input id="nota'+contador_notas+' "type="text" class="form-control"></p>'
@@ -11,6 +12,17 @@ var contador_notas = 1;
 
 }
 */
+var check_Notify = function(){
+  if (contador_notificaciones > 0) {
+    var top = document.getElementById('notificaciones');
+    var notify = document.getElementById('notificacion1');
+    var basura = top.removeChild(notify);
+    contador_notificaciones = 0;
+  }
+  else {
+    console.log('no hay notifiaciones');
+  }
+}
 var addElement = function () {
   contador_notas++;
   //agega nota
@@ -139,12 +151,18 @@ var promedio = function () {
         sumadeporcentajes += (get_porcentaje(arreglo[k])/100);//ver formula , esta es la suma de promedios del divisor
       }
       x = (4-promediosin)/sumadeporcentajes;
+      if (x > 7) {
+        return 'imposible'; // imposible pasar pq nesecitaria una nota mayor a 7
+      }
+      if (x < 0) {
+        return 'yapaso'; // ya paso puesto que no nesecita nota
+      }
       for (var m = 0; m < arreglo.length; m++) {
         var nombre = 'nota'+arreglo[m];
         console.log(x);
         document.getElementById(nombre).value = x;
       }
-      return 4
+      return 4;
     }
     else {
       var promediofinal= 0;
@@ -166,7 +184,9 @@ var promedio = function () {
 }
 
 var show_avrg = function () {
+    check_Notify();
     var result = promedio();
+
     if (result == -1) {
       console.log('mal');
       var parent = document.getElementById('notificaciones');
@@ -178,27 +198,52 @@ var show_avrg = function () {
       parent.appendChild(newnotify);
     }
     else {
-      if (result >= 4) {
+      if (result >= 4 && result < 7) {
         //aprove
         var parent = document.getElementById('notificaciones');
         var newnotify = document.createElement('div');
         newnotify.setAttribute('class','alert alert-success');
         newnotify.setAttribute('role','alert');
+        newnotify.setAttribute('id','notificacion1');
         var message = 'Pasaste el ramo con ' + result;
         newnotify.innerHTML = message;
         parent.appendChild(newnotify);
+        contador_notificaciones++;
 
       }
-      else {
+      else if(result < 4 && result > 0.1){
         var parent = document.getElementById('notificaciones');
         var newnotify = document.createElement('div');
         newnotify.setAttribute('class','alert alert-danger');
         newnotify.setAttribute('role','alert');
+        newnotify.setAttribute('id','notificacion1');
         var message = 'No pasaste :( tu nota fue ' + result;
         newnotify.innerHTML = message;
-
         parent.appendChild(newnotify);
+        contador_notificaciones++;
 
+      }
+      else if (result === 'imposible') {
+        var parent = document.getElementById('notificaciones');
+        var newnotify = document.createElement('div');
+        newnotify.setAttribute('class','alert alert-danger');
+        newnotify.setAttribute('role','alert');
+        newnotify.setAttribute('id','notificacion1');
+        var message = 'No puedes pasar con ninguna nota';
+        newnotify.innerHTML = message;
+        parent.appendChild(newnotify);
+        contador_notificaciones++;
+      }
+      else if (result === 'yapaso') {
+        var parent = document.getElementById('notificaciones');
+        var newnotify = document.createElement('div');
+        newnotify.setAttribute('class','alert alert-success');
+        newnotify.setAttribute('role','alert');
+        newnotify.setAttribute('id','notificacion1');
+        var message = 'YA PASASTE!! no nesecitas nota, apuesto ya sabias...';
+        newnotify.innerHTML = message;
+        parent.appendChild(newnotify);
+        contador_notificaciones++;
       }
     }
 
