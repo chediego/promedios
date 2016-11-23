@@ -106,12 +106,52 @@ var removeElement = function () {
 
 var get_nota = function(pos){
   var aux = 'nota' + pos;
-  return Number(document.getElementById(aux).value);
+  //renderizamos la nota para que funcione tambien cuando ingresan coma envez de un punto
+  var nota = document.getElementById(aux).value;
+  if (nota == "cata") {
+    alert("\nLa mejor habboamiga bff msn toque zumbido , pequeña, cachorrita clifford del mundo!\n");
+  }
+  if (nota != 0) {
+    nota.split(",");
+    var nota_render = "";
+    for (var i = 0; i < nota.length; i++) {
+      if (i == 1) {
+        nota_render = nota_render + ".";
+      }
+      else {
+        nota_render = nota_render + nota[i];
+      }
+    }
+    return parseFloat(nota_render);
+  }
+  else {
+    return Number(nota);
+  }
+  console.log(nota_render);
+  //return Number(document.getElementById(aux).value);
+  //return parseFloat(nota_render);
 }
 
 var get_porcentaje = function(pos) {
   var aux = 'porcentaje' + pos;
-  return Number(document.getElementById(aux).value);
+  var porcentaje = document.getElementById(aux).value;
+  if (aux != 0) {
+    var porcentaje_render = "";
+    porcentaje.split(",");
+    for (var i = 0; i < porcentaje.length; i++) {
+      if(porcentaje[i] == ","){
+        porcentaje_render = porcentaje_render + ".";
+      }
+      else {
+        porcentaje_render = porcentaje_render + porcentaje[i];
+      }
+    }
+    return parseFloat(porcentaje_render);
+  }
+  else {
+    return Number(porcentaje);
+  }
+  //return Number(document.getElementById(aux).value);
 }
 
 var promedio = function () {
@@ -134,7 +174,7 @@ var promedio = function () {
   console.log(arreglo[0]);
   // si el porcentaje es 100% calculo el promedio por ponderacion, si el usuario no ingreso porcentajes entonces se hace por defecto(todas las notas)
   //con igual porcentaje
-  if (sumatoriaprc == 100) {
+  if (sumatoriaprc >= 99.8 && sumatoriaprc <= 100) {
     if (check) {
       console.log('faltan notas');
       var x = 0;
@@ -176,7 +216,7 @@ var promedio = function () {
     var result = sumatoria/contador_notas;
     return result;
   }
-  else if (sumatoriaprc <100 || sumatoriaprc>0) {
+  else if (sumatoriaprc <99.8 || sumatoriaprc>0) {
     console.log('test');
     return -1;
   }
@@ -193,7 +233,7 @@ var show_avrg = function () {
       var newnotify = document.createElement('div');
       newnotify.setAttribute('class','alert alert-warning');
       newnotify.setAttribute('role','alert');
-      var message = 'Revisa las ponderaciones peaso e laji ';
+      var message = 'Revisa las ponderaciones :D <3';
       newnotify.innerHTML = message;
       parent.appendChild(newnotify);
     }

@@ -19,7 +19,7 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Promediador 0.1.2</h1>
+    <h1>Promediador 0.1.2 beta</h1>
     <hr>
     <div class="row">
       <div class="col-md-3">
@@ -50,7 +50,39 @@
 
       </p>
     </div>
+    <button id="tutorial" type="button" class="btn btn-default" aria-label="Left Align" data-toggle ="modal" data-target ="#myModal">
+    como usar    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+    </button>
+    <!-- Modal -->
+    <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Instrucciones</h4>
+          </div>
+          <div class="modal-body">
+            -en caso de que todas las notas tengan igual ponderacion, solo rellenar el campo nota. <br>
+            -en caso que cada nota tenga distinta ponderacion, debera rellenar el campo porcentaje tambien <br>
+            ej: <br> nota: 4.2  porcentaje  : 40 <br>
+                nota2: 5.5 porcentaje2 : 60
+                <br>
+            -en caso que desee saber que nota(s) nesecita para pasar <br>
+            el ramo, con distintas ponderaciones, debera rellenar el campo <br>
+            porcentajes y/o el campo notas, dejando vacio las notas que desee <br>
+            que le calculemos(el calculo se hace para pasar el ramo con nota 4)<br>
+            <br>
+            dudas,sugerencias y reporte de errores a promediador.cl@gmail.com <br>
+            version beta! <br>
 
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary">Reportar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -59,4 +91,5 @@
     <script src="js/botones.js"></script>
     <script src="js/main.js"></script>
   </body>
+
 </html>
