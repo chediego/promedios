@@ -103,19 +103,27 @@ var removeElement = function () {
     contador_notas--;
   }
 }
-
+/*var saludo = function (pos) {
+  var nota = document.getElementById(aux).value;
+  if (nota == "cata") {
+    alert("\nLa mejor habboamiga bff msn toque zumbido , pequeña, cachorrita clifford del mundo!\n");
+  }
+}*/
 var get_nota = function(pos){
   var aux = 'nota' + pos;
   //renderizamos la nota para que funcione tambien cuando ingresan coma envez de un punto
   var nota = document.getElementById(aux).value;
-  if (nota == "cata") {
+  if (nota == "cata" || nota == "Cata") {
     alert("\nLa mejor habboamiga bff msn toque zumbido , pequeña, cachorrita clifford del mundo!\n");
+  }
+  if (nota =="Diego" || nota =="diego") {
+    alert("no lo pescan :(");
   }
   if (nota != 0) {
     nota.split(",");
     var nota_render = "";
     for (var i = 0; i < nota.length; i++) {
-      if (i == 1) {
+      if (nota[i] == ",") {
         nota_render = nota_render + ".";
       }
       else {
@@ -135,7 +143,7 @@ var get_nota = function(pos){
 var get_porcentaje = function(pos) {
   var aux = 'porcentaje' + pos;
   var porcentaje = document.getElementById(aux).value;
-  if (aux != 0) {
+  if (porcentaje != 0) {
     var porcentaje_render = "";
     porcentaje.split(",");
     for (var i = 0; i < porcentaje.length; i++) {
