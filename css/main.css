@@ -6,18 +6,23 @@
   margin-left: -10%;
   font-size: 10px;
   position:sticky;
-  background-color: #BFBFBF;
+  background-color: #1E824C;
+  /*background-color: #BFBFBF; colorn ormal */
   border-radius: 5px;
 }
 body{
-  background-color: #ECECEC !important;
+  /*background-color: #ECECEC !important;*/
+  background-color: #D91E18;/*color navidad*/
+  background-image: url("../img/xmas.jpg");
 }
 h1{
-  color: black !important;
+  /*color: black !important;*/
+  color: #26A65B;
   text-align: center;
 }
 .col-md-4{
-  background-color: #BFBFBF !important;
+  /*background-color: #BFBFBF !important; color normal*/
+  background-color: #26A65B;/*navidad */
   margin-left: 5%;
   border-radius: 5px;
   height: inherit;
@@ -32,7 +37,8 @@ h1{
   float: left;
   position: sticky;
   font-size: 10px;
-  background-color: #BFBFBF;
+  /*background-color: #BFBFBF; color normal*/
+  background-color: #1E824C; /*navidada*/
   border-radius: 5px;
   /*background-color: #6C7A89;*/
 }
