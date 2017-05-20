@@ -6,14 +6,14 @@
   margin-left: -10%;
   font-size: 10px;
   position:sticky;
-  background-color: #1E824C;
-  /*background-color: #BFBFBF; colorn ormal */
+  background-color: #1E824C; conolor navidad
+  /*background-color: #BFBFBF; color normal */
   border-radius: 5px;
 }
 body{
-  /*background-color: #ECECEC !important;*/
-  background-color: #D91E18;/*color navidad*/
-  background-image: url("../img/xmas.jpg");
+  background-color: #ECECEC !important;
+  /*background-color: #D91E18;/*color navidad*/
+  /*background-image: url("../img/xmas.jpg");*/
 }
 h1{
   /*color: black !important;*/
