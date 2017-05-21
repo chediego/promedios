@@ -12,6 +12,16 @@ var contador_notificaciones = 0 ;
 
 }
 */
+var add_Course = function() {
+  var prueba = document.getElementById('ramo1')
+  var nodoNuevoCopia = prueba.cloneNode(true);
+  prueba.appendChild(nodoNuevoCopia);
+  console.log(prueba);
+}
+
+
+
+
 var check_Notify = function(){
   if (contador_notificaciones > 0) {
     var top = document.getElementById('notificaciones');
@@ -111,14 +121,9 @@ var removeElement = function () {
 }*/
 var get_nota = function(pos){
   var aux = 'nota' + pos;
-  //renderizamos la nota para que funcione tambien cuando ingresan coma envez de un punto
+  //renderizamos la nota para que funcione tambien cuando ingresan coma en vez de un punto
   var nota = document.getElementById(aux).value;
-  if (nota == "cata" || nota == "Cata") {
-    alert("\nLa mejor habboamiga bff msn toque zumbido , pequeña, cachorrita clifford del mundo!\n");
-  }
-  if (nota =="Diego" || nota =="diego") {
-    alert("no lo pescan :(");
-  }
+//borrado easter egg
   if (nota != 0) {
     nota.split(",");
     var nota_render = "";
